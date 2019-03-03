@@ -1,24 +1,26 @@
 <template>
-  <nav class="Header">
+  <nav class="Header navbar navbar-light bg-light">
     <div>
-      <a class="menu-item">
+      <router-link class="nav-link home" to="/">
+        Home
+      </router-link>
+      <router-link class="nav-link" to="/products">
         Products
-      </a>
-      <a class="menu-item">
+      </router-link>
+      <router-link class="nav-link" to="/orders">
         Orders
-      </a>
+      </router-link>
     </div>
     <div>
-      <a class="menu-item">
-        Sign in
-      </a>
-      <a class="menu-item btn btn-outline">
-        Sign up
-      </a>
+      <router-link class="nav-link btn btn-primary" to="/signin">
+        Sign In
+      </router-link>
+      <router-link class="nav-link btn btn-dark" to="/signup">
+        Sign Up
+      </router-link>
     </div>
   </nav>
 </template>
-
 <script>
 export default {
   name: 'header',
@@ -27,13 +29,12 @@ export default {
 
 <style scoped>
 .Header {
-  background-color: lightgray;
-  padding: 20px;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid lightblue;
 }
 
-.Header .menu-item {
-  margin: 0 15px;
+.Header .nav-link {
+  display: inline-block;
 }
 </style>

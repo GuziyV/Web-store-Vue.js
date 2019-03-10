@@ -5,6 +5,7 @@ import SignIn from '@/components/SignIn';
 import Products from '@/components/Products';
 import Orders from '@/components/Orders';
 import SignUp from '@/components/SignUp';
+import Admin from '@/components/admin/Admin';
 
 import BootstrapVue from 'bootstrap-vue';
 
@@ -36,12 +37,17 @@ export default new Router({
         {
           path: 'signin',
           name: 'signin',
-          component: SignUp,
+          component: SignIn,
         },
         {
           path: 'signup',
           name: 'signup',
-          component: SignIn,
+          component: SignUp,
+        },
+        {
+          path: 'admin',
+          name: 'admin',
+          component: Admin,
         },
       ],
     },

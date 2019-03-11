@@ -34,7 +34,7 @@ function login(username, password) {
       if (responce.data.token && responce.data.user) {
         const user = responce.data.user;
         user.token = responce.data.token;
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('user', user);
       }
 
       return responce.user;

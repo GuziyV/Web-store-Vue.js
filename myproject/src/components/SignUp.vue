@@ -17,7 +17,7 @@
       <input v-model="phone" type="text" class="form-control" placeholder="Phone" required="required" data-format="+38 (0dd) ddd-dddd">
     </div>
       <div class="form-group">
-        <button class="btn btn-primary btn-block" v-on:click="signUp()">
+        <button class="btn btn-primary btn-block" v-on:click="signUp">
           Register
         </button>
       </div>
@@ -40,12 +40,13 @@ export default {
     }
   },
   methods: {
-    signUp() {
+    signUp(e) {
+      e.preventDefault();
       userService.register({
         login: this.login,
         password: this.password,
         email: this.email,
-        phone: this.phone,
+        telephone: this.phone,
       });
     }
   }

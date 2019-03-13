@@ -11,7 +11,7 @@
         Orders
       </router-link>
     </div>
-    <div>
+    <div v-if="!currentUser">
       <router-link class="nav-link btn btn-primary" to="/signin">
         Sign In
       </router-link>
@@ -19,11 +19,30 @@
         Sign Up
       </router-link>
     </div>
+    <div v-else>
+      <a class="btn btn-link" href="#">{{ currentUser.login }}</a> | <a href="#" class="btn btn-link-danger" v-on:click="logout()">Logout</a>
+    </div>
   </nav>
 </template>
 <script>
+import { userService } from "./../../services/userService"
+
 export default {
   name: 'header',
+   data() {
+    return {
+    }
+  },
+  methods: {
+    logout() {
+      userService.logout();
+    }
+  },
+  computed: {
+    currentUser() {
+      return userService.getCurrentUser();
+    }
+  }
 };
 </script>
 
@@ -36,5 +55,9 @@ export default {
 
 .Header .nav-link {
   display: inline-block;
+}
+
+.Header .btn.btn-link-danger {
+  color: red;
 }
 </style>

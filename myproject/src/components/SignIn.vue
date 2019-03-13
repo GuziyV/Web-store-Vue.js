@@ -1,27 +1,19 @@
 <template>
 <div class="Register-form">
-  <form method="post">
+  <form>
     <h2 class="text-center">
       Log in
     </h2>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Username" required="required">
+      <input v-model="login" type="text" class="form-control" placeholder="Username" required="required">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" placeholder="Password" required="required">
+      <input  v-model="password" type="password" class="form-control" placeholder="Password" required="required">
     </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block">
+        <button type="submit" class="btn btn-primary btn-block" v-on:click="signIn">
           Log in
         </button>
-      </div>
-      <div class="clearfix">
-        <label class="pull-left checkbox-inline"><input type="checkbox">
-        Remember me
-      </label>
-        <a href="#" class="pull-right">
-          Forgot Password?
-        </a>
       </div>
   </form>
   <p class="text-center">
@@ -33,8 +25,21 @@
 </template>
 
 <script>
+import { userService } from "./../services/userService"
 export default {
   name: 'signin',
+  data() {
+    return {
+      login: "",
+      password: "",
+    }
+  },
+  methods: {
+    signIn(e) {
+      e.preventDefault();
+      userService.login(this.login, this.password);
+    }
+  }
 };
 </script>
 

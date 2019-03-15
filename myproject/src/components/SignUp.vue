@@ -28,16 +28,17 @@
 </template>
 
 <script>
-import { userService } from "./../services/userService"
+import userService from './../services/userService';
+
 export default {
   name: 'signup',
   data() {
     return {
-      login: "",
-      password: "",
-      email: "",
-      phone: "",
-    }
+      login: '',
+      password: '',
+      email: '',
+      phone: '',
+    };
   },
   methods: {
     signUp(e) {
@@ -48,8 +49,8 @@ export default {
         email: this.email,
         telephone: this.phone,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

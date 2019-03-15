@@ -11,7 +11,7 @@
         Orders
       </router-link>
     </div>
-    <div v-if="!currentUser">
+    <div v-if="!isLoggedIn">
       <router-link class="nav-link btn btn-primary" to="/signin">
         Sign In
       </router-link>
@@ -20,29 +20,26 @@
       </router-link>
     </div>
     <div v-else>
-      <a class="btn btn-link" href="#">{{ currentUser.login }}</a> | <a href="#" class="btn btn-link-danger" v-on:click="logout()">Logout</a>
+      <a class="btn btn-link" href="#">лул</a> | <a href="#" class="btn btn-link-danger" v-on:click="logout()">Logout</a>
     </div>
   </nav>
 </template>
 <script>
-import { userService } from "./../../services/userService"
+import { userService } from './../../services/userService';
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'header',
-   data() {
+  data() {
     return {
-    }
+    };
   },
-  methods: {
-    logout() {
-      userService.logout();
-    }
-  },
-  computed: {
-    currentUser() {
-      return userService.getCurrentUser();
-    }
-  }
+  methods: mapActions('logout', [
+    'logout'
+  ]),
+  computed: mapState({
+    isLoggedIn: state => state.user.isLoggedIn
+  }),
 };
 </script>
 

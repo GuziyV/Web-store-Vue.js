@@ -25,21 +25,26 @@
 </template>
 
 <script>
-import { userService } from "./../services/userService"
+import userService from './../services/userService';
+
 export default {
   name: 'signin',
   data() {
     return {
-      login: "",
-      password: "",
-    }
+      login: '',
+      password: '',
+    };
   },
   methods: {
     signIn(e) {
-      e.preventDefault();
-      userService.login(this.login, this.password);
-    }
-  }
+      this.$store.dispatch("user/login", {
+        login: this.login,
+        password: this.password
+      }).then(() => {
+        this.$router.push("/")
+      });
+    },
+  },
 };
 </script>
 

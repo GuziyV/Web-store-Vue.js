@@ -50,7 +50,7 @@ function getCurrentUser() {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export const userService = {
+export default {
   login,
   logout,
   register,

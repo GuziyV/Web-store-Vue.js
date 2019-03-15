@@ -37,7 +37,7 @@ const actions = {
     });
   },
   logout({ commit }) {
-    this.userService.logout();
+    userService.logout();
     commit(LOGOUT);
   },
 };

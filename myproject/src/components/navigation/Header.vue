@@ -20,7 +20,7 @@
       </router-link>
     </div>
     <div v-else>
-      <a class="btn btn-link" href="#">лул</a> | <a href="#" class="btn btn-link-danger" v-on:click="logout()">Logout</a>
+      <a class="btn btn-link" href="#">лул</a> | <a href="#" class="btn btn-link-danger" v-on:click="logout">Logout</a>
     </div>
   </nav>
 </template>
@@ -34,9 +34,13 @@ export default {
     return {
     };
   },
-  methods: mapActions('logout', [
-    'logout'
-  ]),
+  methods: {
+    logout(e) {
+      console.log(this.$store);
+      this.$store.dispatch("user/logout");
+      this.$router.push("/")
+    }
+  },
   computed: mapState({
     isLoggedIn: state => state.user.isLoggedIn
   }),

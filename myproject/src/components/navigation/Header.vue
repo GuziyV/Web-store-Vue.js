@@ -20,13 +20,14 @@
       </router-link>
     </div>
     <div v-else>
-      <a class="btn btn-link" href="#">лул</a> | <a href="#" class="btn btn-link-danger" v-on:click="logout">Logout</a>
+      <a class="btn btn-link" href="#">{{ currentUser.login }}</a> |
+      <a href="#" class="btn btn-link-danger" v-on:click="logout">Logout</a>
     </div>
   </nav>
 </template>
 <script>
 import { userService } from './../../services/userService';
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'header',
@@ -37,12 +38,13 @@ export default {
   methods: {
     logout(e) {
       console.log(this.$store);
-      this.$store.dispatch("user/logout");
-      this.$router.push("/")
-    }
+      this.$store.dispatch('user/logout');
+      this.$router.push('/');
+    },
   },
   computed: mapState({
-    isLoggedIn: state => state.user.isLoggedIn
+    isLoggedIn: state => state.user.isLoggedIn,
+    currentUser: state => state.user.currentUser,
   }),
 };
 </script>

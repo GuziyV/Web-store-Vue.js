@@ -37,11 +37,11 @@ export default {
   },
   methods: {
     signIn(e) {
-      this.$store.dispatch("user/login", {
+      this.$store.dispatch('user/login', {
         login: this.login,
-        password: this.password
+        password: this.password,
       }).then(() => {
-        this.$router.push("/")
+        this.$router.push('/');
       });
     },
   },

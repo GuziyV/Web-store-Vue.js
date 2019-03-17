@@ -31,22 +31,16 @@ function login(username, password) {
         localStorage.setItem('user', JSON.stringify(user));
         axios.defaults.headers.common = authHeader();
       }
-
       return responce.user;
     });
 }
 
 function register(user) {
-  return axios.post('/user/register', user).then(handleResponse).catch(resp => console.log(resp));
+  return axios.post('/user/register', user).then(handleResponse);
 }
 
 function getById(id) {
   return axios.get('/user', id).then(handleResponse);
-}
-
-function getCurrentUser() {
-  const user = JSON.parse(window.localStorage.getItem('user'));
-  return user;
 }
 
 // eslint-disable-next-line import/prefer-default-export
@@ -55,5 +49,4 @@ export default {
   logout,
   register,
   getById,
-  getCurrentUser,
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="Products">
       <div class="productItem" v-for="product in products" v-bind:key="product.model"> 
-
+        
       </div>
   </div>
 </template>

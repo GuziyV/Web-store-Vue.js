@@ -11,8 +11,7 @@ function handleResponse(response) {
   console.log(response);
   if (response.status === 401) {
     // auto logout if 401 response returned from api
-    logout();
-    location.reload(true);
+    this.$router.push({ path: 'login' });
   }
   return Promise.resolve(response);
 }

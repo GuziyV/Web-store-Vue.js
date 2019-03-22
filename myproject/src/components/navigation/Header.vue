@@ -20,6 +20,9 @@
       </router-link>
     </div>
     <div v-else>
+      <router-link v-if="currentUser && isAdmin" class="nav-link" to="/admin">
+        Admin Tools
+      </router-link>
       <a class="btn btn-link" href="#">{{ currentUser.login }}</a> |
       <a href="#" class="btn btn-link-danger" v-on:click="logout">Logout</a>
     </div>
@@ -37,7 +40,6 @@ export default {
   },
   methods: {
     logout(e) {
-      console.log(this.$store);
       this.$store.dispatch('user/logout');
       this.$router.push('/');
     },
@@ -45,6 +47,7 @@ export default {
   computed: mapState({
     isLoggedIn: state => state.user.isLoggedIn,
     currentUser: state => state.user.currentUser,
+    isAdmin: state => state.user.currentUser.role === "Admin",
   }),
 };
 </script>

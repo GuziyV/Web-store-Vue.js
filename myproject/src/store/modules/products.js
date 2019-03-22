@@ -15,12 +15,22 @@ const actions = {
       commit('setProducts', products);
     });
   },
+  addProduct({ commit }, product) {
+    axios.post('/products', product).then((response) => {
+      const productFromServer = response.data;
+      commit('setProducts', productFromServer);
+    });
+  },
 };
 
 const mutations = {
   setProducts(st, products) {
     // eslint-disable-next-line no-param-reassign
     st.all = products;
+  },
+  addProduct(st, product) {
+    // eslint-disable-next-line no-param-reassign
+    st.all.push(product);
   },
   decrementProductInventory(st, { id }) {
     const product = state.all.find(pr => pr.id === id);

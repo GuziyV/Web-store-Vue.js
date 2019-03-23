@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     addProduct() {
-      console.log(this.$store);
       this.$store.dispatch("products/addProduct", {
         categoryName: this.categoryName,
         producerName: this.producerName,

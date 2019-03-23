@@ -19,7 +19,9 @@ const mutations = {
     // eslint-disable-next-line no-param-reassign
     st.pending = true;
   },
-  [LOGIN_SUCCESS](st) {
+  [LOGIN_SUCCESS](st, user) {
+    // eslint-disable-next-line no-param-reassign
+    st.currentUser = user;
     // eslint-disable-next-line no-param-reassign
     st.isLoggedIn = true;
     // eslint-disable-next-line no-param-reassign
@@ -28,14 +30,16 @@ const mutations = {
   [LOGOUT](st) {
     // eslint-disable-next-line no-param-reassign
     st.isLoggedIn = false;
+    // eslint-disable-next-line no-param-reassign
+    st.currentUser = null;
   },
 };
 
 const actions = {
   login({ commit }, user) {
     commit(LOGIN); // TODO show spinner
-    return userService.login(user.login, user.password).then(() => {
-      commit(LOGIN_SUCCESS);
+    return userService.login(user.login, user.password).then((u) => {
+      commit(LOGIN_SUCCESS, u);
     });
   },
   logout({ commit }) {

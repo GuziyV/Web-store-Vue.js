@@ -29,8 +29,9 @@ function login(username, password) {
         user.token = responce.data.tokenString;
         localStorage.setItem('user', JSON.stringify(user));
         axios.defaults.headers.common = authHeader();
+        return Promise.resolve(user);
       }
-      return responce.user;
+      return Promise.reject('Something went wrong while login');
     });
 }
 

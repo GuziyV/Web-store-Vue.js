@@ -8,18 +8,18 @@
 </template>
 
 <script>
-import AddProduct from "./AddProduct";
-import UpdateProduct from "./UpdateProduct";
+import AddProduct from './AddProduct';
+import UpdateProduct from './UpdateProduct';
 
 export default {
   name: 'admin',
   components: {
     AddProduct,
-    UpdateProduct
+    UpdateProduct,
   },
   data() {
     return {
-      
+
     };
   },
 };

@@ -7,9 +7,13 @@
       <div class="form-group">
         <input v-model="producerName" type="text" class="form-control" placeholder="Producer" required="required">
       </div>
-      <div class="form-group">
-        <input v-model="categoryName" type="text" class="form-control" placeholder="Category name" required="required">
-      </div>
+        <v-select v-model="categoryName"
+                  :options="categories"
+                  label="name"
+                  type="text"
+                  placeholder="Category name"
+                  required="required">
+        </v-select>
       <div class="form-group">
         <input v-model="price" type="number" class="form-control" placeholder="Price" required="required">
       </div>
@@ -33,17 +37,21 @@ export default {
   name: 'add-product',
   data() {
     return {
-      categoryName: "",
-      producerName: "",
-      model: "",
-      price: "",
-      description: "",
-      numberOfItems: "",
+      categoryName: '',
+      producerName: '',
+      model: '',
+      price: '',
+      description: '',
+      numberOfItems: '',
+      categories: state => state.categories.all,
     };
+  },
+  created() {
+    this.$store.dispatch('categories/getCategories');
   },
   methods: {
     addProduct() {
-      this.$store.dispatch("products/addProduct", {
+      this.$store.dispatch('products/addProduct', {
         categoryName: this.categoryName,
         producerName: this.producerName,
         model: this.model,
@@ -51,8 +59,8 @@ export default {
         description: this.description,
         numberOfItems: this.numberOfItems,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

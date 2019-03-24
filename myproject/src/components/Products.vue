@@ -1,6 +1,6 @@
 <template>
   <div class="Products">
-      <div class="productItem" v-for="product in products" v-bind:key="product.model"> 
+      <div class="productItem" v-for="product in products" v-bind:key="product.model">
         <div class="headline">
           {{ product.producerName }}
         </div>
@@ -10,17 +10,18 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'Products',
   computed: mapState({
     products: state => state.products.all,
   }),
   methods: mapActions('cart', [
-    'addProductToCart'
+    'addProductToCart',
   ]),
-  created () {
-    this.$store.dispatch('products/getAllProducts')
-  }
+  created() {
+    this.$store.dispatch('products/getAllProducts');
+  },
 };
 </script>
 

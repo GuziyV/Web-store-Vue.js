@@ -1,9 +1,9 @@
 <template>
     <div class="AddProduct-form">
     <form>
-        <v-select type="text" 
+        <v-select type="text"
                   v-model="selectedProduct"
-                  class="product-select" 
+                  class="product-select"
                   :options="products"
                   placeholder="Select item"
                   @search="search"
@@ -37,37 +37,38 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'update-product',
-      created() {
-      this.$store.dispatch('products/getAllProducts');
-    },
+  created() {
+    this.$store.dispatch('products/getAllProducts');
+  },
   data() {
-    return { 
+    return {
       selectedProduct: {
-        fullName: "Select product"
-      }
+        fullName: 'Select product',
+      },
     };
   },
   computed: mapState({
     products: state => state.products.all,
   }),
   methods: {
-    updateProduct(){
-      
+    updateProduct() {
+
     },
-    search(input){
+    search(input) {
       const store = this.$store;
       clearTimeout(this.timeout);
 
-      this.timeout = setTimeout(function () {
+      this.timeout = setTimeout(() => {
         store.dispatch('products/getAllProducts', {
-           search: input
+          search: input,
         });
       }, 1000);
-    }
-  }
+    },
+  },
 };
 </script>
 

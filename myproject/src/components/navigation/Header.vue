@@ -47,7 +47,7 @@ export default {
   computed: mapState({
     isLoggedIn: state => state.user.isLoggedIn,
     currentUser: state => state.user.currentUser,
-    isAdmin: state => state.user.currentUser.role === "Admin",
+    isAdmin: state => state.user.currentUser.role === 'Admin',
   }),
 };
 </script>

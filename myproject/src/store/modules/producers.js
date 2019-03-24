@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Vue from 'vue';
 
 const state = {
   all: [],
@@ -19,6 +20,7 @@ const actions = {
     axios.post('/producer', producer).then((response) => {
       const producerFromServer = response.data;
       commit('addProducer', producerFromServer);
+      Vue.$snotify.success('New producer appears in the store');
     });
   },
 };

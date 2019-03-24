@@ -17,22 +17,31 @@ const actions = {
     } else {
       url = '/products';
     }
-    axios.get(url).then((response) => {
+    return axios.get(url).then((response) => {
       const products = response.data;
       commit('setProducts', products);
     });
   },
   addProduct({ commit }, product) {
-    axios.post('/products', product).then((response) => {
+    return axios.post('/products', product).then((response) => {
       const productFromServer = response.data;
       commit('addProduct', productFromServer);
       Vue.$snotify.success('New product appears in the store');
     });
   },
   deleteProduct({ commit }, { id }) {
-    axios.delete(`/products/${id}`).then((response) => {
+    return axios.delete(`/products/${id}`).then((response) => {
       if (response.data) {
         commit('deleteProduct', { id });
+        Vue.$snotify.success('Product was removed the store');
+      }
+    });
+  },
+  updateProduct({ commit }, product) {
+    return axios.put(`/products/${product.id}`, product).then((response) => {
+      if (response.data) {
+        commit('updateProduct', product);
+        Vue.$snotify.success('Product was updated');
       }
     });
   },
@@ -50,6 +59,13 @@ const mutations = {
   deleteProduct(st, { id }) {
     // eslint-disable-next-line no-param-reassign
     st.all = st.all.filter(el => el.id !== id);
+  },
+  updateProduct(st, product) {
+    // eslint-disable-next-line no-param-reassign
+    st.all = st.all.filter(p => p.id !== product.id);
+    // eslint-disable-next-line no-param-reassign
+    product.fullName = `${product.producerName} ${product.model}`;
+    st.all.push(product);
   },
   decrementProductInventory(st, { id }) {
     const product = st.all.find(pr => pr.id === id);

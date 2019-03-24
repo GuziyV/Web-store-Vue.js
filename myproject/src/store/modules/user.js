@@ -1,8 +1,10 @@
+import Vue from 'vue';
 import userService from './../../services/userService';
 
 const LOGIN = 'LOGIN';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGOUT = 'LOGOUT';
+const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 
 const state = {
   isLoggedIn: !!localStorage.getItem('user'),
@@ -33,6 +35,9 @@ const mutations = {
     // eslint-disable-next-line no-param-reassign
     st.currentUser = null;
   },
+  [REGISTER_SUCCESS](st, user) {
+
+  },
 };
 
 const actions = {
@@ -45,6 +50,12 @@ const actions = {
   logout({ commit }) {
     userService.logout();
     commit(LOGOUT);
+  },
+  register({ commit }, user) {
+    return userService.register(user).then((u) => {
+      commit(REGISTER_SUCCESS, u);
+      Vue.$snotify.success('Now you can sign in and buy some products');
+    });
   },
 };
 

@@ -1,14 +1,8 @@
 <template>
   <nav class="Header navbar navbar-light bg-light">
     <div>
-      <router-link class="nav-link home" to="/">
-        Home
-      </router-link>
       <router-link class="nav-link" to="/products">
         Products
-      </router-link>
-      <router-link class="nav-link" to="/orders">
-        Orders
       </router-link>
     </div>
     <div v-if="!isLoggedIn">

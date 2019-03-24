@@ -44,27 +44,34 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 
+function getInitialState() {
+  return {
+    selectedProduct: {
+      fullName: 'Select product',
+    }
+  }
+}
+
 export default {
   name: 'update-product',
   created() {
     this.$store.dispatch('products/getAllProducts');
   },
   data() {
-    return {
-      selectedProduct: {
-        fullName: 'Select product',
-      },
-    };
+    return getInitialState();
   },
   computed: mapState({
     products: state => state.products.all,
   }),
   methods: {
+    clearData() {
+      Object.assign(this.$data, getInitialState());
+    },
     updateProduct() {
-
+      this.$store.dispatch('products/updateProduct', this.selectedProduct);
     },
     deleteProduct() {
-      this.$store.dispatch('products/deleteProduct', this.selectedProduct);
+      this.$store.dispatch('products/deleteProduct', this.selectedProduct).then(() => this.clearData());
     },
     search(input) {
       const store = this.$store;

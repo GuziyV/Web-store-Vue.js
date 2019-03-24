@@ -8,7 +8,6 @@ function logout() {
 }
 
 function handleResponse(response) {
-  console.log(response);
   if (response.status === 401) {
     // auto logout if 401 response returned from api
     this.$router.push({ path: 'login' });
@@ -36,7 +35,8 @@ function login(username, password) {
 }
 
 function register(user) {
-  return axios.post('/user/register', user).then(handleResponse);
+  return axios.post('/user/register', user)
+    .then(handleResponse);
 }
 
 function getById(id) {

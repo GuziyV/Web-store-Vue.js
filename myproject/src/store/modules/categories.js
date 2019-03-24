@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Vue from 'vue';
 
 const state = {
   all: [],
@@ -19,6 +20,7 @@ const actions = {
     axios.post('/category', category).then((response) => {
       const categoryFromServer = response.data;
       commit('addCategory', categoryFromServer);
+      Vue.$snotify.success('New category was created');
     });
   },
 };

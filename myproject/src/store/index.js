@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import user from './modules/user';
 import products from './modules/products';
 import categories from './modules/categories';
+import producers from './modules/producers';
 
 Vue.use(Vuex);
 
@@ -11,5 +12,6 @@ export default new Vuex.Store({
     user,
     products,
     categories,
+    producers,
   },
 });

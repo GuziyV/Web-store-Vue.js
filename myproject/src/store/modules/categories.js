@@ -24,13 +24,13 @@ const actions = {
 };
 
 const mutations = {
-  setCategories(st, products) {
+  setCategories(st, category) {
     // eslint-disable-next-line no-param-reassign
-    st.all = products;
+    st.all = category;
   },
-  addCategory(st, product) {
+  addCategory(st, category) {
     // eslint-disable-next-line no-param-reassign
-    st.all.push(product);
+    st.all.push(category);
   },
 };
 

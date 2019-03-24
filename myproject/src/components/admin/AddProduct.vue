@@ -35,11 +35,12 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'add-product',
   data() {
     return {
-      category: { name: "Select Category" },
+      category: { name: 'Select Category' },
       producerName: '',
       model: '',
       price: '',

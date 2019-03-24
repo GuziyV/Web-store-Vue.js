@@ -8,11 +8,13 @@ import SignUp from '@/components/SignUp';
 import Admin from '@/components/admin/Admin';
 
 import BootstrapVue from 'bootstrap-vue';
+import vSelect from 'vue-select';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 Vue.use(BootstrapVue);
+Vue.component('v-select', vSelect);
 
 Vue.use(Router);
 

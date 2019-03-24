@@ -9,8 +9,14 @@ const getters = {
 };
 
 const actions = {
-  getAllProducts({ commit }) {
-    axios.get('/products').then((response) => {
+  getAllProducts({ commit }, params) {
+    let url = '';
+    if (params) {
+      url = `/products?page=${params.page || 1}&search=${params.search || ''}`;
+    } else {
+      url = '/products';
+    }
+    axios.get(url).then((response) => {
       const products = response.data;
       commit('setProducts', products);
     });

@@ -28,10 +28,15 @@
         <input v-model="selectedProduct.numberOfItems" type="number" class="form-control" placeholder="Number of items" required="required">
       </div>
       <div class="form-group">
-        <button class="btn btn-primary btn-block" v-on:click="updateProduct">
-          Create
+        <button class="btn btn-warning btn-block" v-on:click="updateProduct">
+          Update
         </button>
-        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-danger btn-block" v-on:click="deleteProduct">
+          Delete
+        </button>
+      </div>
     </form>
   </div>
 </template>
@@ -56,7 +61,7 @@ export default {
   }),
   methods: {
     updateProduct() {
-
+      
     },
     search(input) {
       const store = this.$store;

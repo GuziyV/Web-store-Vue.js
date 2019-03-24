@@ -5,18 +5,18 @@ const state = {
 };
 
 const getters = {
-  allCategories: st => st.allProducts,
+  allCategories: st => st.all,
 };
 
 const actions = {
   getAllCategories({ commit }) {
-    axios.get('/categories').then((response) => {
+    axios.get('/category').then((response) => {
       const categories = response.data;
       commit('setCategories', categories);
     });
   },
   addCategory({ commit }, category) {
-    axios.post('/categories', category).then((response) => {
+    axios.post('/category', category).then((response) => {
       const categoryFromServer = response.data;
       commit('addCategory', categoryFromServer);
     });

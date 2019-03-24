@@ -8,6 +8,7 @@
         <input v-model="producerName" type="text" class="form-control" placeholder="Producer" required="required">
       </div>
         <v-select v-model="categoryName"
+                  class="category-select"
                   :options="categories"
                   label="name"
                   type="text"
@@ -33,6 +34,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 export default {
   name: 'add-product',
   data() {
@@ -43,11 +45,13 @@ export default {
       price: '',
       description: '',
       numberOfItems: '',
-      categories: state => state.categories.all,
     };
   },
+  computed: mapState({
+    categories: state => state.categories.all,
+  }),
   created() {
-    this.$store.dispatch('categories/getCategories');
+    this.$store.dispatch('categories/getAllCategories');
   },
   methods: {
     addProduct() {
@@ -69,6 +73,10 @@ export default {
   max-width: 450px;
   margin: 0 auto;
   margin-top: 80px;
+}
+
+.AddProduct-form .category-select {
+  margin-bottom: 10px;
 }
 
 </style>

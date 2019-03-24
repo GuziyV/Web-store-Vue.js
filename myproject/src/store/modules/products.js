@@ -22,9 +22,17 @@ const actions = {
     });
   },
   addProduct({ commit }, product) {
+    console.log(product);
     axios.post('/products', product).then((response) => {
       const productFromServer = response.data;
       commit('setProducts', productFromServer);
+    });
+  },
+  deleteProduct({ commit }, { id }) {
+    axios.delete(`/products/${id}`).then((response) => {
+      if (response.data) {
+        commit('deleteProduct', { id });
+      }
     });
   },
 };
@@ -38,8 +46,12 @@ const mutations = {
     // eslint-disable-next-line no-param-reassign
     st.all.push(product);
   },
+  deleteProduct(st, { id }) {
+    // eslint-disable-next-line no-param-reassign
+    st.all = st.all.filters(el => el.id !== id);
+  },
   decrementProductInventory(st, { id }) {
-    const product = state.all.find(pr => pr.id === id);
+    const product = st.all.find(pr => pr.id === id);
     // eslint-disable-next-line no-plusplus
     product.numberOfItems--;
   },

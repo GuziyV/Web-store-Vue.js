@@ -7,7 +7,7 @@
       <div class="form-group">
         <input v-model="producerName" type="text" class="form-control" placeholder="Producer" required="required">
       </div>
-        <v-select v-model="categoryName"
+        <v-select v-model="category"
                   class="category-select"
                   :options="categories"
                   label="name"
@@ -39,7 +39,7 @@ export default {
   name: 'add-product',
   data() {
     return {
-      categoryName: '',
+      category: { name: "Select Category" },
       producerName: '',
       model: '',
       price: '',
@@ -56,7 +56,7 @@ export default {
   methods: {
     addProduct() {
       this.$store.dispatch('products/addProduct', {
-        categoryName: this.categoryName,
+        categoryName: this.category.name,
         producerName: this.producerName,
         model: this.model,
         price: this.price,

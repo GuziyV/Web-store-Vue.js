@@ -61,7 +61,10 @@ export default {
   }),
   methods: {
     updateProduct() {
-      
+
+    },
+    deleteProduct() {
+      this.$store.dispatch("products/deleteProduct", this.selectedProduct);
     },
     search(input) {
       const store = this.$store;

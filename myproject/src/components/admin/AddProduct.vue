@@ -4,9 +4,14 @@
       <div class="form-group">
         <input v-model="model" type="text" class="form-control" placeholder="Model" required="required">
       </div>
-      <div class="form-group">
-        <input v-model="producerName" type="text" class="form-control" placeholder="Producer" required="required">
-      </div>
+      <v-select v-model="producer"
+                  class="category-select"
+                  :options="producers"
+                  label="name"
+                  type="text"
+                  placeholder="Producer name"
+                  required="required">
+        </v-select>
         <v-select v-model="category"
                   class="category-select"
                   :options="categories"
@@ -41,7 +46,7 @@ export default {
   data() {
     return {
       category: { name: 'Select Category' },
-      producerName: '',
+      producer: { name: 'Select Producer' },
       model: '',
       price: '',
       description: '',
@@ -50,15 +55,17 @@ export default {
   },
   computed: mapState({
     categories: state => state.categories.all,
+    producers: state => state.producers.all,
   }),
   created() {
     this.$store.dispatch('categories/getAllCategories');
+    this.$store.dispatch('producers/getAllProducers');
   },
   methods: {
     addProduct() {
       this.$store.dispatch('products/addProduct', {
         categoryName: this.category.name,
-        producerName: this.producerName,
+        producerName: this.producer.name,
         model: this.model,
         price: this.price,
         description: this.description,

@@ -15,10 +15,10 @@ const actions = {
       commit('setProducers', producers);
     });
   },
-  addCategory({ commit }, producer) {
+  addProducer({ commit }, producer) {
     axios.post('/producer', producer).then((response) => {
       const producerFromServer = response.data;
-      commit('addCProducer', producerFromServer);
+      commit('addProducer', producerFromServer);
     });
   },
 };

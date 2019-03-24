@@ -3,6 +3,7 @@
     <Header></Header>
 
     <router-view></router-view>
+    <vue-snotify></vue-snotify>
   </div>
 </template>
 
@@ -16,7 +17,6 @@ export default {
   name: 'Layout',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
     };
   },
 };

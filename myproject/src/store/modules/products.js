@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Vue from 'vue';
 
 const state = {
   all: [],
@@ -22,10 +23,10 @@ const actions = {
     });
   },
   addProduct({ commit }, product) {
-    console.log(product);
     axios.post('/products', product).then((response) => {
       const productFromServer = response.data;
-      commit('setProducts', productFromServer);
+      commit('addProduct', productFromServer);
+      Vue.$snotify.success('New product appears in the store');
     });
   },
   deleteProduct({ commit }, { id }) {
@@ -48,7 +49,7 @@ const mutations = {
   },
   deleteProduct(st, { id }) {
     // eslint-disable-next-line no-param-reassign
-    st.all = st.all.filters(el => el.id !== id);
+    st.all = st.all.filter(el => el.id !== id);
   },
   decrementProductInventory(st, { id }) {
     const product = st.all.find(pr => pr.id === id);

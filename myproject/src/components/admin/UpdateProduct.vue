@@ -13,19 +13,40 @@
         <input v-model="selectedProduct.producerName" type="text" class="form-control" placeholder="Producer" required="required">
       </div>
       <div class="form-group">
+        <div>
+          Model:
+        </div>
         <input v-model="selectedProduct.model" type="text" class="form-control" placeholder="Model" required="required">
       </div>
       <div class="form-group">
+        <div>
+          Category:
+        </div>
         <input v-model="selectedProduct.categoryName" type="text" class="form-control" placeholder="Category name" required="required">
       </div>
       <div class="form-group">
+        <div>
+          Price:
+        </div>
         <input v-model="selectedProduct.price" type="number" class="form-control" placeholder="Price" required="required">
       </div>
       <div class="form-group">
+        <div>
+          Description:
+        </div>
         <textarea v-model="selectedProduct.description" type="text" class="form-control" placeholder="Description" required="required"> </textarea>
       </div>
       <div class="form-group">
+        <div>
+          Number of Items:
+        </div>
         <input v-model="selectedProduct.numberOfItems" type="number" class="form-control" placeholder="Number of items" required="required">
+      </div>
+      <div class="form-group">
+        <div>
+          Discount in percents:
+        </div>
+        <input v-model="selectedProduct.discount" type="number" class="form-control" placeholder="Number of items" required="required">
       </div>
       <div class="form-group">
         <button class="btn btn-warning btn-block" v-on:click="updateProduct">

@@ -17,7 +17,7 @@
       <router-link v-if="currentUser && isAdmin" class="nav-link" to="/admin">
         Admin Tools
       </router-link>
-      <a class="btn btn-link" href="#">{{ currentUser.login }}</a> |
+      <router-link class="btn btn-link" to="/profile">{{ currentUser.login }}</router-link> |
       <a href="#" class="btn btn-link-danger" v-on:click="logout">Logout</a>
     </div>
   </nav>

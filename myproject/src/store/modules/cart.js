@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const state = {
   items: [],
-  checkoutStatus: null,
 };
 
 const getters = {
@@ -10,23 +9,24 @@ const getters = {
 };
 
 const actions = {
-  getAllProducts({ commit }) {
-    axios.get('/cart').then((response) => {
+  getAllProducts({ commit }, id) {
+    axios.get(`/cart/${id}`).then((response) => {
       const products = response.data;
       commit('setCartItems', products);
     });
   },
-  addProductToCart({ st, commit }, product) {
-    if (product.inventory > 0) {
-      const cartItem = st.items.find(item => item.id === product.id);
-      if (!cartItem) {
-        commit('pushProductToCart', product);
-      } else {
-        commit('incrementItemQuantity', cartItem);
+  // eslint-disable-next-line no-shadow
+  addProductToCart({ state, commit, rootState }, product) {
+    axios.post(`/cart/${rootState.user.currentUser.id}`, product).then((response) => {
+      if (product.numerOfItems > 0) {
+        const cartItem = state.items.find(item => item.id === product.id);
+        if (!cartItem) {
+          commit('setCartItems', response.data.products);
+        }
+        // remove 1 item from stock
+        commit('products/decrementProductInventory', { id: product.id });
       }
-      // remove 1 item from stock
-      commit('products/decrementProductInventory', { id: product.id });
-    }
+    });
   },
 };
 

@@ -24,7 +24,7 @@
             </button>
           </div>
           <div class="form-group">
-            <button class="btn btn-success btn-block" v-on:click="addProductToCart(product.id)">
+            <button v-if="currentUser" class="btn btn-success btn-block" v-on:click="addProductToCart(product)">
               Add to cart
             </button>
           </div>
@@ -61,6 +61,7 @@ export default {
       });
     }, 
     ...mapActions('cart', ['addProductToCart']),
+    ...mapState('user', ['currentUser'])
   },
   created() {
     this.$store.dispatch('products/getAllProducts', { page: this.page }).then(products => {

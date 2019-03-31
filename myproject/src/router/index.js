@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Layout from '@/components/Layout';
 import SignIn from '@/components/SignIn';
 import Products from '@/components/Products';
-import Orders from '@/components/Orders';
+import Profile from '@/components/Profile';
 import SignUp from '@/components/SignUp';
 import Admin from '@/components/admin/Admin';
 
@@ -23,9 +23,9 @@ export default new Router({
           component: Products,
         },
         {
-          path: 'orders',
-          name: 'orders',
-          component: Orders,
+          path: 'profile',
+          name: 'profile',
+          component: Profile,
         },
         {
           path: 'signin',

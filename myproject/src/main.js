@@ -6,8 +6,9 @@ import 'vue-snotify/styles/material.css';
 
 import BootstrapVue from 'bootstrap-vue';
 import Snotify from 'vue-snotify';
+import InfiniteLoading from 'vue-infinite-loading';
 import vSelect from 'vue-select';
-
+import lineClamp from 'vue-line-clamp';
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
@@ -18,6 +19,8 @@ import store from './store';
 
 Vue.use(Snotify);
 Vue.use(BootstrapVue);
+Vue.use(InfiniteLoading);
+Vue.use(lineClamp);
 Vue.component('v-select', vSelect);
 
 

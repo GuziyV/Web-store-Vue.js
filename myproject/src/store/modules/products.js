@@ -6,7 +6,7 @@ const state = {
 };
 
 const getters = {
-  allProducts: st => st.allProducts,
+  allProducts: st => st.all,
 };
 
 const actions = {
@@ -20,6 +20,7 @@ const actions = {
     return axios.get(url).then((response) => {
       const products = response.data;
       commit('setProducts', products);
+      return products;
     });
   },
   addProduct({ commit }, product) {

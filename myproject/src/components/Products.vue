@@ -4,6 +4,9 @@
         <div class="headline">
           {{ product.producerName }} {{ product.model }}
         </div>
+        <div class="inStock">
+          {{ product.numberOfItems }} in stock
+        </div>
         <div class="description" v-line-clamp="5">
           {{ product.description }}
         </div>
@@ -88,6 +91,12 @@ export default {
 
 .Products .productItem .headline {
   text-align: center;
+}
+
+.Products .productItem .inStock {
+  text-align: center;
+  font-size: 80%;
+  font-style: italic;
 }
 
 .Products .productItem .bottom {

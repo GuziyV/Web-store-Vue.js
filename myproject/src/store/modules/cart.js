@@ -11,13 +11,12 @@ const getters = {
 
 const actions = {
   getAllProducts({ commit }) {
-    axios.get('/products').then((response) => {
+    axios.get('/cart').then((response) => {
       const products = response.data;
-      commit('setProducts', products);
+      commit('setCartItems', products);
     });
   },
   addProductToCart({ st, commit }, product) {
-    commit('setCheckoutStatus', null);
     if (product.inventory > 0) {
       const cartItem = st.items.find(item => item.id === product.id);
       if (!cartItem) {
@@ -26,7 +25,7 @@ const actions = {
         commit('incrementItemQuantity', cartItem);
       }
       // remove 1 item from stock
-      commit('products/decrementProductInventory', { id: product.id }, { root: true });
+      commit('products/decrementProductInventory', { id: product.id });
     }
   },
 };
@@ -46,11 +45,6 @@ const mutations = {
   setCartItems(st, { items }) {
     // eslint-disable-next-line no-param-reassign
     st.items = items;
-  },
-
-  setCheckoutStatus(st, status) {
-    // eslint-disable-next-line no-param-reassign
-    st.checkoutStatus = status;
   },
 };
 

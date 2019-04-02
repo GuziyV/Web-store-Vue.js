@@ -11,8 +11,14 @@ const getters = {
 const actions = {
   getAllProducts({ commit }, id) {
     axios.get(`/cart/${id}`).then((response) => {
-      const products = response.data;
+      const products = response.data.products;
       commit('setCartItems', products);
+    });
+  },
+  buyItemsFromCart({ commit }, userId) {  //transfer user cart to order
+    axios.post(`/order/${userId}`).then((response) => {
+      commit('cleanCart');
+      commit('orders/addOrder', response.data,  { root: true });
     });
   },
   // eslint-disable-next-line no-shadow
@@ -22,9 +28,12 @@ const actions = {
         const cartItem = state.items.find(item => item.id === product.id);
         if (!cartItem) {
           commit('setCartItems', response.data.products);
+        } else {
+          cartItem.numbuerOfProductsInCart++;
         }
+        Vue.$snotify.success('New product was add to your cart');
         // remove 1 item from stock
-        commit('products/decrementProductInventory', { id: product.id });
+        commit('products/decrementProductInventory', { id: product.id },  { root: true });
       }
     });
   },
@@ -36,13 +45,18 @@ const mutations = {
     st.items.push(product);
   },
 
+  cleanCart(st) {
+    // eslint-disable-next-line no-param-reassign
+    st.items = [];
+  },
+
   incrementItemQuantity(st, product) {
     const cartItem = st.items.find(item => item.id === product.id);
     // eslint-disable-next-line no-plusplus
     cartItem.numberOfItems++;
   },
 
-  setCartItems(st, { items }) {
+  setCartItems(st, items) {
     // eslint-disable-next-line no-param-reassign
     st.items = items;
   },

@@ -15,9 +15,10 @@
 import { mapState, mapActions } from 'vuex';
 import Basket from './Basket';
 import Orders from './Orders';
+
 export default {
   name: 'Profile',
-    components: {
+  components: {
     Basket,
     Orders,
   },
@@ -27,8 +28,8 @@ export default {
     };
   },
   computed: {
-    ...mapState('user', ['currentUser'])
-  }
+    ...mapState('user', ['currentUser']),
+  },
 };
 </script>
 

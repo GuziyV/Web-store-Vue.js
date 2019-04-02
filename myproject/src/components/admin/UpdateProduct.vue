@@ -69,8 +69,8 @@ function getInitialState() {
   return {
     selectedProduct: {
       fullName: 'Select product',
-    }
-  }
+    },
+  };
 }
 
 export default {

@@ -39,12 +39,12 @@ export default {
         password: '',
         email: '',
         phone: '',
-      }
+      },
     };
   },
   methods: {
     signUp(e) {
-      this.$store.dispatch("user/register", this.user);
+      this.$store.dispatch('user/register', this.user);
     },
   },
 };

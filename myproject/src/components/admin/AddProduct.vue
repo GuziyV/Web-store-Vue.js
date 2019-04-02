@@ -40,6 +40,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+
 function getInitialData() {
   return {
     product: {
@@ -49,8 +50,8 @@ function getInitialData() {
       price: '',
       description: '',
       numberOfItems: '',
-    }
-  }
+    },
+  };
 }
 export default {
   name: 'add-product',

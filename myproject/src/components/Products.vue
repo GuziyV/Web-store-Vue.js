@@ -45,13 +45,13 @@ export default {
       allProducts: [],
     };
   },
-  methods:{
-    goToDetails(productId){
-      this.$router.push("products/" + productId);
+  methods: {
+    goToDetails(productId) {
+      this.$router.push(`products/${productId}`);
     },
     infiniteHandler($state) {
-      this.$store.dispatch('products/getAllProducts', { page: this.page }).then(products => {
-        if(products.length){
+      this.$store.dispatch('products/getAllProducts', { page: this.page }).then((products) => {
+        if (products.length) {
           this.allProducts.push(...products);
           this.page += 1;
           $state.loaded();
@@ -59,18 +59,18 @@ export default {
           $state.complete();
         }
       });
-    }, 
+    },
     ...mapActions('cart', ['addProductToCart']),
-    ...mapState('user', ['currentUser'])
+    ...mapState('user', ['currentUser']),
   },
   created() {
-    this.$store.dispatch('products/getAllProducts', { page: this.page }).then(products => {
-        if(products.length){
-          this.allProducts.push(...products);
-          this.page += 1;
-        }
-      });
-  }
+    this.$store.dispatch('products/getAllProducts', { page: this.page }).then((products) => {
+      if (products.length) {
+        this.allProducts.push(...products);
+        this.page += 1;
+      }
+    });
+  },
 };
 </script>
 

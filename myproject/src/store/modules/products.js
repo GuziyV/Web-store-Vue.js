@@ -71,7 +71,7 @@ const mutations = {
   decrementProductInventory(st, { id }) {
     const product = st.all.find(pr => pr.id === id);
     // eslint-disable-next-line no-plusplus
-    product.numberOfItems--;
+    if(product) product.numberOfItems--;
   },
 };
 

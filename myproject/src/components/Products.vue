@@ -61,9 +61,14 @@ export default {
       });
     },
     ...mapActions('cart', ['addProductToCart']),
+  },
+  computed: {
     ...mapState('user', ['currentUser']),
   },
   created() {
+    if(this.currentUser) {
+      this.$store.dispatch('cart/getAllProducts', this.currentUser.id);
+    }
     this.$store.dispatch('products/getAllProducts', { page: this.page }).then((products) => {
       if (products.length) {
         this.allProducts.push(...products);

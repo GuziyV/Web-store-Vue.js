@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Vue from 'vue';
 
 const state = {
   items: [],
@@ -23,8 +24,12 @@ const actions = {
   },
   // eslint-disable-next-line no-shadow
   addProductToCart({ state, commit, rootState }, product) {
+    if(!rootState.user.currentUser) {
+      Vue.$snotify.error('You need to register or log in first');
+      return;
+    }
     axios.post(`/cart/${rootState.user.currentUser.id}`, product).then((response) => {
-      if (product.numerOfItems > 0) {
+      if (product.numberOfItems > 0) {
         const cartItem = state.items.find(item => item.id === product.id);
         if (!cartItem) {
           commit('setCartItems', response.data.products);
@@ -57,6 +62,10 @@ const mutations = {
   },
 
   setCartItems(st, items) {
+    if(!items) {
+      st.items = [];
+      return;
+    } 
     // eslint-disable-next-line no-param-reassign
     st.items = items;
   },
